@@ -14,14 +14,20 @@
                 {{ error_message }}
             </div>
             {% endif %}
-            {% for choice in question.choice_set.all %}
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="choice" id="{{ choice.id }}" value="{{ choice.id }}">
-                    <label class="form-check-label" for="{{ choice.id }}">
-                        {{ choice.choice_text }}
-                    </label>
-                </div>
-            {% endfor %}
+            {% if question.choice_set.count > 0 %}
+                {% for choice in question.choice_set.all %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="choice" id="{{ choice.id }}" value="{{ choice.id }}">
+                        <label class="form-check-label" for="{{ choice.id }}">
+                            {{ choice.choice_text }}
+                        </label>
+                    </div>
+                {% endfor %}
+            {% else %}
+                    <div class="alert alert-warning">
+                        <p>No choices available.</p>
+                    </div>
+            {% endif %}
         </div>
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Vote</button>
