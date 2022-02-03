@@ -3,28 +3,23 @@
 {% block content %}
 <h1>Results</h1>
 
-
-    <table class="table table-striped caption-top">
-        <caption>Current results</caption>
-        <thead>
-            <tr>
-                <th scope="col">Choice</th>
-                <th scope="col">Votes</th>
-            </tr>
-        </thead>
-        <tbody>
+    <ol class="list-group list-group-numbered">
         {% for choice in question.choice_set.all %}
-            <tr>
-                <td>{{ choice.choice_text }}</td>
-                <td>{{ choice.votes }}</td>
-            </tr>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold">{{ choice.choice_text }}</div>
+                </div>
+                <span class="badge bg-primary rounded-pill">{{ choice.votes }}</span>
+            </li>
         {% endfor %}
-        </tbody>
-    </table>
+    </ol>
 
+<div class="card my-4 p-4">
+    
+    <a href="{% url 'polls:detail' question.id %}">
+        ¿Do you want to vote again?
+    </a>
 
-<a href="{% url 'polls:detail' question.id %}">
-    ¿You want to vote again?
-</a>
+</div>
 
 {% endblock %}
