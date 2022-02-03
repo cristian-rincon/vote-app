@@ -9,20 +9,25 @@
     </head>
     <body>
         <div class="container">
-            <div class="row">
-                <div class="col-sm">
-                    <h1><a href="/">Vote app</a></h1>
+            {% comment %} App Header {% endcomment %}
+            <header>
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="px-4 py-5 my-5 text-center">
+                            <h1><a href="/">Vote app</a></h1>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="container">
+            </header>
+            
+            {% comment %}  {% endcomment %}
             <div class="row">
                 <div class="col-sm">
                     {% block content %}
                     {% endblock %}
                 </div>
             </div>
+            
         </div>
     </body>
 </html>
