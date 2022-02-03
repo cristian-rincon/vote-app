@@ -1,0 +1,18 @@
+{% extends 'polls/base.html' %}
+
+    
+{% block content %}
+    <div class="card">
+        {% if latest_question_list %}
+            <ul class="list-group list-group-flush">
+            {% for question in latest_question_list %}
+                <li class="list-group-item"><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No questions are available.</p>
+        {% endif %}
+    </div>
+
+    
+{% endblock %}
