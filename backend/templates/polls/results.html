@@ -2,7 +2,12 @@
 
 {% block content %}
 <h1>Results</h1>
+<div class="mb-3">
 
+    <span class="badge bg-primary rounded-pill">
+        {{ question.question_text }}
+    </span>
+</div>
     <ul class="list-group">
         {% for choice in question.choice_set.all %}
             <li class="list-group-item d-flex gap-3 py-3">
@@ -17,8 +22,8 @@
         </ul>
 
 <div class="card my-4 p-4">
-    
-    <a href="{% url 'polls:detail' question.id %}">
+            
+    <a href="{% url 'polls:detail' question.id %}" class="btn btn-success">
         ¿Do you want to vote again?
     </a>
 
