@@ -1,20 +1,20 @@
 import datetime
+from typing import Any, Union
+
 from django.db import models
 from django.utils import timezone
 
+
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
+    pub_date = models.DateTimeField("date published")
 
-
-
-    def __str__(self):
+    def __str__(self) -> Union[str, Any]:
         return self.question_text
-    
-    def was_published_recently(self):
+
+    def was_published_recently(self) -> Union[bool, Any]:
         """Tell if the question was published recently or not"""
         return timezone.now() >= self.pub_date >= timezone.now() - datetime.timedelta(days=1)
-
 
 
 class Choice(models.Model):
@@ -22,5 +22,5 @@ class Choice(models.Model):
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
 
-    def __str__(self):
+    def __str__(self) -> Union[str, Any]:
         return self.choice_text
