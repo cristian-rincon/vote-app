@@ -2,21 +2,20 @@
 
     
 {% block content %}
-    <h2>&#128293; Trending polls</h2>
-
-    <div class="card">
-        {% if latest_question_list %}
-            <ul class="list-group list-group-flush">
-            {% for question in latest_question_list %}
-                <li class="list-group-item"><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
-            {% endfor %}
-            </ul>
-        {% else %}
-        <div class="alert alert-warning">
-            <p>No questions are available.</p>
+    <h2 class="text-center">&#128293; Trending polls</h2>
+    
+    {% if latest_question_list %}
+    {% for question in latest_question_list %}
+    <div class="row align-items-center justify-content-center">
+        <div class="card my-2 col-md-8 col-lg-6">
+            <a class="btn" href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
         </div>
-        {% endif %}
     </div>
-
+    {% endfor %}
+    {% else %}
+    <div class="alert alert-warning">
+        <p>No polls are available.</p>
+    </div>
+    {% endif %}
     
 {% endblock %}
