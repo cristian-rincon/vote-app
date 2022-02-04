@@ -11,10 +11,10 @@
         <link rel="shortcut icon" href="{% static 'images/polls/favicon_io/favicon.ico'%}" type="image/x-icon">
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
     </head>
-    <body>
-        <div class="container">
+    <body class="d-flex flex-column h-100">
+        <main class="flex-shrink-0">
             {% comment %} App Header {% endcomment %}
-            <header class="p-5 my-4 bg-light rounded-3">
+            <header class="p-5 mb-4 bg-light rounded-3">
                 <div class="row">
                     <div class="col-sm">
                         <div class=" text-center">
@@ -25,15 +25,15 @@
                     </div>
                 </div>
             </header>
-            
-            {% comment %}  {% endcomment %}
-            <div class="row">
-                <div class="col-sm">
-                    {% block content %}
-                    {% endblock %}
-                </div>
+            <div class="container mb-5">
+
+                
+                {% comment %} Body {% endcomment %}
+    
+                        {% block content %}
+                        {% endblock %}
             </div>
-            
-        </div>
+        </main>
+        {% include "footer.html" %}
     </body>
 </html>

@@ -3,16 +3,18 @@
 {% block content %}
 <h1>Results</h1>
 
-    <ol class="list-group list-group-numbered">
+    <ul class="list-group">
         {% for choice in question.choice_set.all %}
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                    <div class="fw-bold">{{ choice.choice_text }}</div>
+            <li class="list-group-item d-flex gap-3 py-3">
+                <div class="d-flex gap-2 w-100 justify-content-between">
+                    <div class="fw-bold">
+                        {{ choice.choice_text }}
+                    </div>
+                    <span class="badge bg-primary rounded-pill">{{ choice.votes }}</span>
                 </div>
-                <span class="badge bg-primary rounded-pill">{{ choice.votes }}</span>
             </li>
         {% endfor %}
-    </ol>
+        </ul>
 
 <div class="card my-4 p-4">
     

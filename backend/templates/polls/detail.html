@@ -28,10 +28,18 @@
                     </div>
             {% endif %}
         </div>
-        <div class="card-footer">
+        
+    </div>
+
+    {% if question.choice_set.count > 0 %}
+        <div class="d-grid gap-2 mt-4">
             <button type="submit" class="btn btn-primary">Vote</button>
         </div>
-    </div>
+        {% else %}
+        <div class="d-grid gap-2 mt-4">
+            <a href="{% url 'polls:index' %}" class="btn btn-danger">Back to home</a>
+        </div> 
+    {% endif %}
     
 </form>
 
