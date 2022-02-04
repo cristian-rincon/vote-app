@@ -8,6 +8,7 @@ from django.utils import timezone
 from .models import Question
 
 SAMPLE_QUESTION = "¿Is this a question?"
+SAMPLE_PAST_QUESTION = "¿Was this a question?"
 
 
 def create_question(question_text: str, days: int) -> Union[Question, Any]:
@@ -65,6 +66,21 @@ class QuestionIndexView(TestCase):
     def test_past_question(self) -> None:
         """Questions with a pub_date in the past are displayed on the index
         page."""
-        question = create_question(question_text=SAMPLE_QUESTION, days=-30)
+        question = create_question(question_text=SAMPLE_PAST_QUESTION, days=-30)
         response = self.client.get(reverse(self.INDEX_URL))
         self.assertQuerysetEqual(response.context["latest_question_list"], [question])
+
+    def test_future_question_and_past_question(self) -> None:
+        """Even if both past and future questions exist, only past questions
+        are displayed."""
+        past_question = create_question(question_text=SAMPLE_PAST_QUESTION, days=-30)
+        create_question(question_text=SAMPLE_QUESTION, days=30)
+        response = self.client.get(reverse(self.INDEX_URL))
+        self.assertQuerysetEqual(response.context["latest_question_list"], [past_question])
+
+    def test_two_past_questions(self) -> None:
+        """The questions index page may display multiple questions."""
+        past_question_1 = create_question(question_text=SAMPLE_PAST_QUESTION, days=-29)
+        past_question_2 = create_question(question_text=SAMPLE_PAST_QUESTION, days=-30)
+        response = self.client.get(reverse(self.INDEX_URL))
+        self.assertQuerysetEqual(response.context["latest_question_list"], [past_question_1, past_question_2])
