@@ -17,6 +17,10 @@ class Question(models.Model):
         """Tell if the question was published recently or not"""
         return timezone.now() >= self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 
+    def count_of_votes(self) -> Union[int, Any]:
+        """Count the number of votes for the question"""
+        return self.choice_set.count()
+
 
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
