@@ -1,0 +1,13 @@
+[run]
+source = .
+omit =
+    .eggs/*
+    *setup.py
+    venv/*
+    *__init__*
+    *tests*
+[report]
+omit =
+    tests/*
+    venv/*
+    *__init__*

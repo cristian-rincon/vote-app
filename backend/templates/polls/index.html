@@ -2,21 +2,26 @@
 
     
 {% block content %}
-    <h2>&#128293; Trending polls</h2>
-
-    <div class="card">
-        {% if latest_question_list %}
-            <ul class="list-group list-group-flush">
-            {% for question in latest_question_list %}
-                <li class="list-group-item"><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
-            {% endfor %}
-            </ul>
-        {% else %}
-        <div class="alert alert-warning">
-            <p>No questions are available.</p>
-        </div>
-        {% endif %}
+    <h2>&#128293; Public polls</h2>
+    <small class="text-muted">Below are the public polls created by admin members.</small>
+    
+    {% if latest_question_list %}
+    <ul class="list-group row align-items-center ">
+        {% for question in latest_question_list %}
+            <li class="list-group-item d-flex gap-3 py-3 my-3 shadow rounded border-0 col-md-8">
+                <div class="d-flex gap-2 w-100 justify-content-between">
+                    <div class="fw-bold">
+                        <a class="fs-3 fw-bold text-black" href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+                    </div>
+                    <span class="badge bg-primary rounded-pill">{{ choice.votes }}</span>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <div class="alert alert-warning">
+        <p>No polls are available.</p>
     </div>
-
+    {% endif %}
     
 {% endblock %}
