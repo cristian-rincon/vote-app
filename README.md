@@ -1,4 +1,6 @@
-# vote-app
+# vote-app 
+
+[![Django CI](https://github.com/cristian-rincon/vote-app/actions/workflows/django.yml/badge.svg)](https://github.com/cristian-rincon/vote-app/actions/workflows/django.yml)
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/cristianr)
 
