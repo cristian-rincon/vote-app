@@ -2,9 +2,9 @@ name: Django CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, develop ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, develop ]
 
 jobs:
   build:
@@ -31,4 +31,4 @@ jobs:
       run: poetry install
     - name: Run Unit Tests
       run: |
-        poetry run python backend/manage.py test
+        poetry run python backend/manage.py test polls
