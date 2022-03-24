@@ -9,6 +9,7 @@ services:
       - POSTGRES_NAME=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - DATABASE=postgres
   web:
     build: .
     command: /app/backend/commands/run.sh
@@ -20,5 +21,6 @@ services:
       - POSTGRES_NAME=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - DATABASE=postgres
     depends_on:
       - db
