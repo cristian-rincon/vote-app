@@ -52,4 +52,18 @@ Please make sure to update tests as appropriate.
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
+## Develop
+
+Here is the way to use the development version of the app.
+
+### Step by step commands
+
+```bash
+# Build the app
+docker-compose up
+
+# Create Superuser
+docker exec -it vote-app_web_1 python backend/manage.py createsuperuser
+```
+
 ### Made with &#10084;&#65039; &nbsp;from &#127464;&#127476;
