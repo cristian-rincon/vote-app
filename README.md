@@ -16,16 +16,16 @@ poetry install
 
 ## Usage
 
+Here is the way to use the development version of the app.
+
+### Step by step commands
+
 ```bash
-# Perform db migrations
-poetry run python manage.py makemigrations
-poetry run python manage.py migrate
+# Build the app
+docker-compose up
 
-# Creates a superuser (needed to use Django admin)
-poetry run python manage.py createsuperuser
-
-# Run local server
-poetry run python manage.py runserver
+# Create Superuser
+docker exec -it vote-app_web_1 python backend/manage.py createsuperuser
 ```
 
 ## Look and feel
@@ -51,19 +51,5 @@ Please make sure to update tests as appropriate.
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-
-## Develop
-
-Here is the way to use the development version of the app.
-
-### Step by step commands
-
-```bash
-# Build the app
-docker-compose up
-
-# Create Superuser
-docker exec -it vote-app_web_1 python backend/manage.py createsuperuser
-```
 
 ### Made with &#10084;&#65039; &nbsp;from &#127464;&#127476;
