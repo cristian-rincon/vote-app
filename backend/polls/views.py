@@ -1,5 +1,5 @@
 # Django REST Framework
-from rest_framework import viewsets
+from rest_framework import permissions, viewsets
 
 from .models import Choice, Question
 from .serializers import ChoiceSerializer, QuestionSerializer
@@ -12,7 +12,7 @@ class QuestionViewSet(viewsets.ModelViewSet):
 
     queryset = Question.objects.all().order_by("-pub_date")
     serializer_class = QuestionSerializer
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class ChoiceViewSet(viewsets.ModelViewSet):
@@ -22,4 +22,4 @@ class ChoiceViewSet(viewsets.ModelViewSet):
 
     queryset = Choice.objects.all()
     serializer_class = ChoiceSerializer
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]

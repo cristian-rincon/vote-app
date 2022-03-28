@@ -8,7 +8,7 @@ from django.utils import timezone
 class Question(models.Model):
     created_by = models.ForeignKey("auth.User", related_name="questions", on_delete=models.CASCADE, null=True)
     question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField("date published")
+    pub_date = models.DateTimeField("date published", auto_now_add=True, blank=True)
     published = models.BooleanField(default=True)
 
     def __str__(self) -> Any:

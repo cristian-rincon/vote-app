@@ -12,6 +12,8 @@ psycopg2-binary = "^2.9.3"
 djangorestframework = "^3.13.1"
 Markdown = "^3.3.6"
 django-filter = "^21.1"
+PyYAML = "^6.0"
+uritemplate = "^4.1.1"
 
 [tool.poetry.dev-dependencies]
 pytest-django = "^4.5.2"

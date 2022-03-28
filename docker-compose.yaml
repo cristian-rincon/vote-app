@@ -9,10 +9,10 @@ services:
       - POSTGRES_NAME=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - DATABASE=sqlite
+      - DATABASE=postgres
   web:
     build: .
-    command: /app/backend/commands/run.sh
+    command: sh -c "/wait && /app/backend/commands/run.sh"
     volumes:
       - .:/app
     ports:
@@ -22,6 +22,10 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - DATABASE=postgres
+      - WAIT_HOSTS=db:5432
+      - WAIT_HOSTS_TIMEOUT=300
+      - WAIT_SLEEP_INTERVAL=30
+      - WAIT_HOST_CONNECT_TIMEOUT=30
     depends_on:
       - db
 
