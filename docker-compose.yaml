@@ -9,7 +9,7 @@ services:
       - POSTGRES_NAME=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - DATABASE=postgres
+      - DATABASE=sqlite
   web:
     build: .
     command: /app/backend/commands/run.sh
@@ -24,3 +24,13 @@ services:
       - DATABASE=postgres
     depends_on:
       - db
+
+  pg_admin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
