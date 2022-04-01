@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "vote-app"
+version = "0.1.0"
+description = ""
+authors = ["cristian-rincon <cristian.o.rincon.b@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Django = "^4.0.2"
+psycopg2-binary = "^2.9.3"
+djangorestframework = "^3.13.1"
+Markdown = "^3.3.6"
+django-filter = "^21.1"
+PyYAML = "^6.0"
+uritemplate = "^4.1.1"
+pytest-cov = "^3.0.0"
+
+[tool.poetry.dev-dependencies]
+pytest-django = "^4.5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "voteapp.settings"
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
+norecursedirs = "venv old_tests"
+addopts = "-p no:warnings --strict-markers --no-migrations --reuse-db"
+
