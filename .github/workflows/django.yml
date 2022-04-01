@@ -32,7 +32,9 @@ jobs:
 
     - name: Run Unit Tests
       run: |
-        cd backend && poetry run pytest --cov
+        cd backend && poetry run pytest --cov --cov-report xml:coverage.xml
 
     - name: Upload Coverage to Codecov
       uses: codecov/codecov-action@v2
+      with:
+        files: backend/coverage.xml
