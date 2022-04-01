@@ -29,6 +29,10 @@ jobs:
 
     - name: Install dependencies
       run: poetry install
+
     - name: Run Unit Tests
       run: |
-        poetry run python backend/manage.py test polls
+        cd backend && poetry run pytest --cov
+
+    - name: Upload Coverage to Codecov
+      uses: codecov/codecov-action@v2

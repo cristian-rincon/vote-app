@@ -11,7 +11,9 @@ services:
       - POSTGRES_PASSWORD=postgres
       - DATABASE=postgres
   web:
-    build: .
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     command: sh -c "/wait && /app/backend/commands/run.sh"
     volumes:
       - .:/app
