@@ -1,6 +1,6 @@
 # vote-app API
 
-[![Django CI](https://github.com/cristian-rincon/vote-app/actions/workflows/django.yml/badge.svg)](https://github.com/cristian-rincon/vote-app/actions/workflows/django.yml)
+[![Django CI](https://github.com/cristian-rincon/vote-app/actions/workflows/django.yml/badge.svg)](https://github.com/cristian-rincon/vote-app/actions/workflows/django.yml) [![codecov](https://codecov.io/gh/cristian-rincon/vote-app/branch/main/graph/badge.svg?token=KKDK1KJR8Y)](https://codecov.io/gh/cristian-rincon/vote-app)
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/cristianr)
 
