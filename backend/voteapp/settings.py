@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 
+from corsheaders.defaults import default_headers
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,6 +30,20 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+# Cors policy
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
+
+CORS_ALLOW_HEADERS = default_headers + (
+    "Cache-Control",
+    "If-Modified-Since",
+    "Access-Control-Allow-Origin",
+)
+
+CSRF_TRUSTED_ORIGINS = ("http://localhost:3000",)
 
 # Application definition
 
@@ -41,11 +57,16 @@ INSTALLED_APPS = [
     # My apps
     "polls.apps.PollsConfig",
     "users.apps.UsersConfig",
+    # Cors headers
+    "corsheaders",
     # Django Rest Framework
     "rest_framework",
 ]
 
+
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
