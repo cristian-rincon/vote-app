@@ -28,11 +28,11 @@ jobs:
         poetry-version: ${{ matrix.poetry-version }}
 
     - name: Install dependencies
-      run: cd backend && poetry install
+      run: poetry install
 
     - name: Run Unit Tests
       run: |
-        cd backend && poetry run pytest --cov --cov-report xml:coverage.xml
+        poetry run pytest --cov --cov-report xml:coverage.xml
 
     - name: Upload Coverage to Codecov
       uses: codecov/codecov-action@v2
