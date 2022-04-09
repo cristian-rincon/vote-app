@@ -12,7 +12,7 @@ class ChoiceInline(admin.TabularInline):
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ("question_text", "pub_date", "was_published_recently", "published")
+    list_display = ("question_text", "pub_date", "was_published_recently", "published", "created_by")
     list_filter = ["pub_date"]
     inlines = [ChoiceInline]
     search_fields = ["question_text"]
@@ -20,5 +20,5 @@ class QuestionAdmin(admin.ModelAdmin):
 
 @admin.register(Choice)
 class ChoiceAdmin(admin.ModelAdmin):
-    list_display = ("choice_text", "votes")
+    list_display = ("question", "choice_text", "votes")
     list_filter = ("question",)

@@ -10,9 +10,13 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - DATABASE=postgres
+    networks:
+      - webapp
   web:
-    build: .
-    command: /app/backend/commands/run.sh
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: sh -c "/wait && /app/backend/commands/run.sh"
     volumes:
       - .:/app
     ports:
@@ -22,5 +26,27 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - DATABASE=postgres
+      - WAIT_HOSTS=db:5432
+      - WAIT_HOSTS_TIMEOUT=300
+      - WAIT_SLEEP_INTERVAL=10
+      - WAIT_HOST_CONNECT_TIMEOUT=30
     depends_on:
       - db
+    networks:
+      - webapp
+
+  pg_admin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
+    networks:
+      - webapp
+
+networks:
+  webapp:
+    driver: bridge

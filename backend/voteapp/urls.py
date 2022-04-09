@@ -13,14 +13,21 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
-
+from django.contrib import admin
+from django.urls import include, path
+from polls.urls import router as polls_router
+from rest_framework.schemas import get_schema_view
+from users.urls import router as users_router
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("polls/", include("polls.urls")),
+    # Django Rest Framework
+    path("", include(users_router.urls)),
+    path("api/v1/", include(polls_router.urls)),
+    path("api-auth/", include("rest_framework.urls")),
+    path("admin/", admin.site.urls),
+    # Route TemplateView to serve Swagger UI template.
+    #   * Provide `extra_context` with view name of `SchemaView`.
+    path("openapi", get_schema_view(title="VoteApp API", description="API for VoteApp", version="1.0.0"), name="openapi-schema"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-

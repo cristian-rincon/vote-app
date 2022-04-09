@@ -6,24 +6,21 @@ from django.utils import timezone
 
 
 class Question(models.Model):
+    created_by = models.ForeignKey("auth.User", related_name="questions", on_delete=models.CASCADE, null=True)
     question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField("date published")
-    published = models.BooleanField(default=False)
+    pub_date = models.DateTimeField("date published", auto_now_add=True, blank=True)
+    published = models.BooleanField(default=True)
 
-    def __str__(self) -> Union[str, Any]:
+    def __str__(self) -> Any:
         return self.question_text
 
-    def was_published_recently(self) -> Union[bool, Any]:
-        """Tell if the question was published recently or not"""
-        return timezone.now() >= self.pub_date >= timezone.now() - datetime.timedelta(days=1)
-
-    def count_of_votes(self) -> Union[int, Any]:
-        """Count the number of votes for the question"""
-        return self.choice_set.count()
+    def was_published_recently(self) -> Any:
+        now = timezone.now()
+        return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
 
 class Choice(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, related_name="choices", on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
 
