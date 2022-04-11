@@ -16,6 +16,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      target: base
     command: sh -c "/wait && /app/backend/commands/run.sh"
     volumes:
       - .:/app
