@@ -12,5 +12,5 @@ RUN chmod +x /wait
 COPY . .
 
 FROM base AS production
-EXPOSE 8080
-CMD ["/app/backend/commands/run.sh"]
+EXPOSE $PORT
+CMD ["/app/backend/commands/run.sh", "$PORT"]

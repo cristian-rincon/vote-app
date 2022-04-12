@@ -14,4 +14,14 @@ python $DJANGO_MANAGER collectstatic --noinput
 
 
 echo "Run server"
-python $DJANGO_MANAGER runserver 0.0.0.0:8000
+
+# Check if DATABASE variable is set and if it is, use $1 variable
+database_variable(){
+    if [ -z "$DATABASE" ]; then
+        echo "DATABASE variable is not set, running server on port $1"
+        python $DJANGO_MANAGER runserver 0.0.0.0:8000
+    else
+        echo "DATABASE variable is set, running server on port $1"
+        python $DJANGO_MANAGER runserver 0.0.0.0:$1
+    fi
+}
