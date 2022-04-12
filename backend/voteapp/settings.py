@@ -28,8 +28,8 @@ SECRET_KEY = "django-insecure-1p&4v$r60#a(adqhyd1+2q((&a6e3oot37kdi*hrbb8+k3tj)h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ["*", os.getenv("HEROKU_APP_URL")]
-CSRF_TRUSTED_ORIGINS = ["*", os.getenv("HEROKU_APP_URL")]
+ALLOWED_HOSTS = ["*", "https://vote-api3206.herokuapp.com/"]
+CSRF_TRUSTED_ORIGINS = ["*", "https://vote-api3206.herokuapp.com/"]
 
 # Application definition
 
