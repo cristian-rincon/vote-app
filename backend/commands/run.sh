@@ -25,3 +25,5 @@ database_variable(){
         python $DJANGO_MANAGER runserver 0.0.0.0:$1
     fi
 }
+
+database_variable
