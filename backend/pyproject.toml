@@ -16,6 +16,7 @@ PyYAML = "^6.0"
 uritemplate = "^4.1.1"
 whitenoise = "^6.0.0"
 dj-database-url = "^0.5.0"
+django-extensions = "^3.1.5"
 
 
 [tool.poetry.dev-dependencies]
@@ -29,6 +30,6 @@ build-backend = "poetry.core.masonry.api"
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "voteapp.settings"
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
-norecursedirs = "venv old_tests"
-addopts = "-p no:warnings --strict-markers --no-migrations --reuse-db"
+norecursedirs = ".venv old_tests"
+# addopts = "-p no:warnings --strict-markers --no-migrations --reuse-db"
 
