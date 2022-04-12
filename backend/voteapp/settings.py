@@ -26,9 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-1p&4v$r60#a(adqhyd1+2q((&a6e3oot37kdi*hrbb8+k3tj)h"  # nosec
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["*", os.getenv("HEROKU_APP_URL")]
 
 
 # Application definition
