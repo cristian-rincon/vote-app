@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM python:3.9-slim AS base
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 WORKDIR /app
@@ -10,3 +10,7 @@ ENV WAIT_VERSION 2.9.0
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/$WAIT_VERSION/wait /wait
 RUN chmod +x /wait
 COPY . .
+
+FROM base AS production
+EXPOSE $PORT
+CMD ["/app/backend/commands/run.sh"]

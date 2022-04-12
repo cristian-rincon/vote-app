@@ -1,4 +1,7 @@
+from datetime import timedelta
+
 from django.contrib.auth.models import User
+from django.utils import timezone
 from rest_framework.test import APITestCase
 
 from .models import Question
@@ -32,3 +35,11 @@ class QuestionTestCase(APITestCase):
         response = self.client.post("/api/v1/questions/", data, format="json")
         self.assertEqual(response.status_code, response_status)
         self.assertEqual(Question.objects.count(), object_count)
+
+    def test_was_published_recently_with_published_set_to_false(self) -> None:
+        future_question = Question.objects.create(
+            id=1, created_by=User(1), question_text=SAMPLE_QUESTION, pub_date=timezone.now() - timedelta(days=30), published=False
+        )
+        future_question.save()
+
+        self.assertIs(future_question.was_published_recently(), False)
