@@ -13,4 +13,4 @@ COPY . .
 
 FROM base AS production
 EXPOSE $PORT
-CMD ["/app/backend/commands/run.sh", "$PORT"]
+CMD ["/app/backend/commands/run.sh"]
