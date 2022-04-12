@@ -3,9 +3,6 @@ authors = ["cristian-rincon <cristian.o.rincon.b@gmail.com>"]
 description = ""
 license = "MIT"
 name = "vote-app"
-packages = [
-  {include = 'voteapp', from = 'backend'},
-]
 version = "0.1.0"
 
 [tool.poetry.dependencies]
